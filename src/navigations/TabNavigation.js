@@ -8,15 +8,15 @@ import SignIn from "../screens/SignIn";
 import SignUp from "../screens/SignUp";
 
 const Tab = createMaterialTopTabNavigator();
-const theme = {
-    colors: {
-      background: "transparent",
-    },
-  };
+// const theme = {
+//     colors: {
+//       background: "transparent",
+//     },
+//   };
 
 const TabNavigation=()=>{
     return(
-    <NavigationContainer theme={theme}>
+    // <NavigationContainer theme={theme}>
       <Tab.Navigator screenOptions={() => ({
       tabBarActiveTintColor: "#FFFFFF",
       tabBarInactiveTintColor: "#E1E1D9",
@@ -34,7 +34,7 @@ const TabNavigation=()=>{
         <Tab.Screen name="Sign In" component={SignIn} />
         <Tab.Screen name="Sign Up" component={SignUp} />
       </Tab.Navigator>
-    </NavigationContainer>
+   
     );
 };
 export default TabNavigation;
