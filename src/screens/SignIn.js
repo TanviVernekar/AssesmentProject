@@ -12,7 +12,11 @@ import {
 import ButtonField from '../components/ButtonField';
 import InputField from '../components/InputField';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
+    const handlesubmit=()=>{
+    
+        return navigation.navigate('AppScreen')
+    }
   return (
     <View>
       <View>
@@ -27,7 +31,7 @@ const SignIn = () => {
           </View>
         </View>
         <Text style={styles.text}>Forgot your password?</Text>
-        <ButtonField />
+        <ButtonField onPress={handlesubmit}/>
       </View>
 
       <View style={styles.fingerprintIcon}>

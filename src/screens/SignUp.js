@@ -3,7 +3,10 @@ import {View,StyleSheet,TextInput,Image} from 'react-native';
 import InputField from '../components/InputField';
 import ButtonField from '../components/ButtonField';
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
+  const handlesubmit=()=>{
+    return navigation.navigate('AppScreen')
+}
   return (
     <View>
       <View>
@@ -19,7 +22,7 @@ const SignUp = () => {
           </View>
         </View>
 
-        <ButtonField/>
+        <ButtonField onPress={handlesubmit}/>
       </View>
     </View>
   );

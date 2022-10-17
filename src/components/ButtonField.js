@@ -1,10 +1,12 @@
 import React from "react";
 import { TouchableOpacity,StyleSheet,View,Text } from "react-native";
 
-const ButtonField = ()=>{
+import AppScreen from "../screens/AppScreen";
+
+const ButtonField = ({onPress})=>{
     return(
         <View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={onPress}>
                 <Text style={styles.text}>SIGN IN</Text>
             </TouchableOpacity>
         </View>

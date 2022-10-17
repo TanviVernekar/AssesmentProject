@@ -118,13 +118,15 @@
 
 import React from "react";
 import {View,Text} from'react-native';
+import Router from "./src/navigations/Router";
 import MainScreen from "./src/screens/MainScreen";
 import SignIn from './src/screens/SignIn';
 
 const App=()=>{
   return(
     <>
-      <MainScreen/>
+      {/* <MainScreen/> */}
+      <Router/>
     </>
   )
 }
