@@ -8,10 +8,11 @@ import {
   StatusBar,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import SiteList from '../screens/SiteList';
 
 const AppScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.mainContainer}>
       <StatusBar
         barStyle="dark-content"
         hidden={false}
@@ -46,15 +47,16 @@ const AppScreen = () => {
         <View style={[styles.dropDownContent]}>
           <Text style={styles.dropDowntext}>Social Media</Text>
           <View style={styles.oval}>
-          <Text style={[styles.item]}>07</Text>
+            <Text style={[styles.item]}>07</Text>
           </View>
-          <Image source={require("../assets/images/pathcopy.png")} style={styles.arrow}/>
+          <Image
+            source={require('../assets/images/pathcopy.png')}
+            style={styles.arrow}
+          />
         </View>
       </View>
-      {/* <View>
-      <FlatList data={persons} renderItem={({item}) => <Text>{item.name}</Text>}/>
-      </View> */}
-     
+
+      <SiteList />
     </SafeAreaView>
   );
 };
@@ -62,6 +64,10 @@ const AppScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#FAFAFA',
   },
   header: {
     width: '100%',
@@ -74,11 +80,11 @@ const styles = StyleSheet.create({
     shadowColor: 'grey',
     shadowOffset: {
       width: 0,
-      height: 3
+      height: 3,
     },
     shadowRadius: 5,
     shadowOpacity: 0.9,
-    padding:10
+    padding: 10,
   },
   headerMenu: {
     alignItems: 'center',
@@ -99,57 +105,58 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     // height: 600,
     // width: 400,
-    backgroundColor:"#FAFAFA",
-    marginTop:10
+    backgroundColor: '#FAFAFA',
+    marginTop: 10,
+  
   },
-  mainContent:{
-    fontSize:24,
-    margin:15,
-    color: "#3C4857",
-    fontWeight:"600",
+  mainContent: {
+    fontSize: 24,
+    margin: 15,
+    color: '#3C4857',
+    fontWeight: '600',
     height: 33,
     width: 55,
-    letterSpacing:0,
-    lineHeight:33,
+    letterSpacing: 0,
+    lineHeight: 33,
+    borderBottomWidth: 3,
+    borderRadius: 2,
+    borderBottomColor: '#FFA222',
   },
-  dropDownContent:{
-    flexDirection:"row",
-    marginTop:10
-   
+  dropDownContent: {
+    flexDirection: 'row',
+    marginTop: 10,
   },
-  dropDowntext:{
-    color: "#3C4857",
-    fontSize:19.2,
-    margin:10,
-    marginLeft:"36%",
-    
+  dropDowntext: {
+    color: '#3C4857',
+    fontSize: 19.2,
+    margin: 10,
+    marginLeft: '36%',
   },
-  item:{ 
-    color:"white",
-    height:22,
-    width:19,
-    fontSize:16,
-    fontWeight:"600",
-    letterSpacing:0,
-    lineHeight:22,
+  item: {
+    color: 'white',
+    height: 22,
+    width: 19,
+    fontSize: 16,
+    fontWeight: '600',
+    letterSpacing: 0,
+    lineHeight: 22,
   },
-  oval:{
-    height:25,
-    width:25,
-    backgroundColor:"#0E85FF",
-    borderRadius:18,
-    justifyContent:"center",
-    alignItems:"center",
-    marginLeft:4,
-    marginTop:8
+  oval: {
+    height: 25,
+    width: 25,
+    backgroundColor: '#0E85FF',
+    borderRadius: 18,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 4,
+    marginTop: 8,
   },
-  arrow:{
-    height:7.15,
-    width:15,
-    marginLeft:5,
-    marginTop:15
-  }
-  
+  arrow: {
+    height: 7.15,
+    width: 15,
+    marginLeft: 5,
+    marginTop: 15,
+  },
 });
 
 export default AppScreen;
