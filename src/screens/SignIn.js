@@ -9,12 +9,13 @@ import {
   StatusBar,
   TextInput,
 } from 'react-native';
-import ButtonField from '../components/ButtonField';
+import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
 
 const SignIn = ({navigation}) => {
     const handlesubmit=()=>{
-    
+      alert(
+        `Congrats!!! Success \n Signin to access the vault`)
         return navigation.navigate('AppScreen')
     }
   return (
@@ -31,7 +32,7 @@ const SignIn = ({navigation}) => {
           </View>
         </View>
         <Text style={styles.text}>Forgot your password?</Text>
-        <ButtonField onPress={handlesubmit}/>
+        <ButtonField onPress={()=>handlesubmit()}/>
       </View>
 
       <View style={styles.fingerprintIcon}>

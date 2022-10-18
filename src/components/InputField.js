@@ -3,8 +3,7 @@ import { View,Text,Image, SafeAreaView,StyleSheet, ImageBackground,StatusBar, Te
 
 const InputField=({placeholder})=>{
     return(
-        <View style={styles.container}>
-        
+        <View>
         <TextInput 
             placeholder={placeholder}
             style={styles.textInput}>
@@ -20,6 +19,7 @@ const InputField=({placeholder})=>{
 
 }
 export default InputField;
+
 
 const styles=StyleSheet.create({
     textInput:{
@@ -55,4 +55,19 @@ const styles=StyleSheet.create({
     //     fontWeight:"bold",
         
     // }
+    addInput:{
+        borderRadius:4,
+        borderColor:"black",
+        paddingHorizontal:10,
+        // margin:25,
+        // flexDirection:"row",
+        height: 54,
+        width: 300,
+        fontSize: 16,
+        // fontweight: "600",
+        fontWeight:"bold",
+        marginTop:40,
+    }
 })
+
+

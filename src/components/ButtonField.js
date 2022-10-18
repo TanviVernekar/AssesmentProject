@@ -1,9 +1,11 @@
 import React from "react";
 import { TouchableOpacity,StyleSheet,View,Text } from "react-native";
 
-import AppScreen from "../screens/AppScreen";
 
-const ButtonField = ({onPress})=>{
+
+
+export const ButtonField = ({onPress})=>{
+    
     return(
         <View>
             <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -12,7 +14,18 @@ const ButtonField = ({onPress})=>{
         </View>
     )
 };
-export default ButtonField
+
+
+export const CustomButton=({name,onPress})=>{ 
+    return(
+        <View>
+            <TouchableOpacity style={styles2.button2} onPress={onPress}> 
+            <Text style={styles2.textInput}>{name}</Text>
+            </TouchableOpacity>
+        </View>
+        
+    )
+};
 
 const styles=StyleSheet.create({
     button:{
@@ -34,5 +47,28 @@ const styles=StyleSheet.create({
         fontWeight:"600",
         fontSize:20,
         
+    }
+})
+
+const styles2=StyleSheet.create({
+
+    button2:{
+        height: 55,
+        width: 196,
+        backgroundColor: '#0E85FF',
+        // borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 85,
+        marginRight:1,
+    },
+    textInput:{
+        color: '#FFFFFF',
+        fontWeight: '600',
+        lineHeight: 24,
+        height: 24,
+        width: 75,
+        letterSpacing: 1.2,
+        fontSize: 18,
     }
 })

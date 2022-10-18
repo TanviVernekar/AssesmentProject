@@ -7,7 +7,9 @@ import {
   Image,
   StatusBar,
   FlatList,
+  Pressable,
 } from 'react-native';
+import Icon from "react-native-vector-icons/MaterialIcons"
 
 
 const SITES = [
@@ -33,21 +35,27 @@ const SITES = [
     },
   ];
   
-  const SiteList = () => {
+  const SiteList = ({navigation}) => {
+    const handleSubmit=()=>{
+      return navigation.navigate('Site Details');
+    }
     return (
       <View style={styles.container}>
         <FlatList
           data={SITES}
           renderItem={({item}) => (
+            <View>
+              <Pressable onPress={handleSubmit}>
             <View style={styles.itemContainer}>
               <View>
                 <View style={styles.topItem}>
                   <Image source={item.source}></Image>
   
-                  <View>
+                  <View >
                     <Text style={styles.socialText}>{item.key}</Text>
-                    <View>
-                      <Text style={styles.copyText}>Copy Password</Text>
+                    <View style={styles.copyContent}>
+                        <Icon name="content-copy" size={15} color="" />
+                      <Text style={styles.copyText}> Copy Password</Text>
                     </View>
                   </View>
                 </View>
@@ -56,6 +64,8 @@ const SITES = [
                   <Text style={styles.link}>{item.link}</Text>
                 </View>
               </View>
+            </View>
+            </Pressable>
             </View>
           )}
         />
@@ -117,13 +127,20 @@ const SITES = [
       lineHeight: 24,
       fontWeight: 'bold',
       alignSelf: 'flex-end',
-      paddingVertical: 6,
+      paddingVertical: 4,
     },
     copyText: {
       color: '#0E85FF',
       fontSize: 11.34,
       alignSelf: 'flex-end',
-      paddingVertical: 6,
+      paddingVertical: 3,
+    },
+    copyContent:{
+        flexDirection:"row",
+        paddingTop:10,
+        justifyContent:"flex-end",
+        marginEnd:-18
+        
     },
     link: {
       color: '#3C4857',

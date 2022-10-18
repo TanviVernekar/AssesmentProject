@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 import {
   View,
   Text,
@@ -6,11 +7,19 @@ import {
   SafeAreaView,
   Image,
   StatusBar,
+  TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SiteList from '../screens/SiteList';
+import SearchField from '../components/SearchField';
 
-const AppScreen = () => {
+const AppScreen = ({navigation}) => {
+  const [clicked, setClicked] = useState(false);
+
+  const handlePress = () => {
+    return navigation.navigate('Add Site');
+  };
   return (
     <SafeAreaView style={styles.mainContainer}>
       <StatusBar
@@ -27,10 +36,14 @@ const AppScreen = () => {
           />
         </View>
         <View style={styles.headerIcons}>
-          <Image
-            source={require('../assets/images/search.png')}
-            style={styles.contentIcon}
-          />
+          <View>
+            <TouchableOpacity onPress={() => setClicked(!clicked)}>
+              <Image
+                source={require('../assets/images/search.png')}
+                style={styles.contentIcon}
+              />
+            </TouchableOpacity>
+          </View>
           <Image
             source={require('../assets/images/sync_icn.png')}
             style={styles.contentIcon}
@@ -43,20 +56,35 @@ const AppScreen = () => {
       </View>
 
       <View style={styles.menu}>
-        <Text style={styles.mainContent}>Sites</Text>
-        <View style={[styles.dropDownContent]}>
-          <Text style={styles.dropDowntext}>Social Media</Text>
-          <View style={styles.oval}>
-            <Text style={[styles.item]}>07</Text>
-          </View>
-          <Image
-            source={require('../assets/images/pathcopy.png')}
-            style={styles.arrow}
-          />
-        </View>
+        {clicked ? (
+          <SearchField />
+        ) : (
+          <>
+            <View>
+              <Text style={styles.mainContent}>Sites</Text>
+              <View style={styles.borderBottom} />
+            </View>
+            <View style={[styles.dropDownContent]}>
+              <Text style={styles.dropDowntext}>Social Media</Text>
+              <View style={styles.oval}>
+                <Text style={[styles.item]}>07</Text>
+              </View>
+              <Image
+                source={require('../assets/images/pathcopy.png')}
+                style={styles.arrow}
+              />
+            </View>
+          </>
+        )}
       </View>
 
-      <SiteList />
+      <SiteList navigation={navigation} />
+      <TouchableOpacity title="add" style={styles.button} onPress={handlePress}>
+        <Image
+          source={require('../assets/images/add_btn.png')}
+          style={styles.addButton}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -107,7 +135,15 @@ const styles = StyleSheet.create({
     // width: 400,
     backgroundColor: '#FAFAFA',
     marginTop: 10,
-  
+  },
+  borderBottom: {
+    borderBottomWidth: 4,
+    height: 3.2,
+    width: 50,
+    borderBottomColor: '#FFA136',
+    borderRadius: 1.6,
+    marginLeft: 17,
+    marginVertical: -14,
   },
   mainContent: {
     fontSize: 24,
@@ -118,9 +154,6 @@ const styles = StyleSheet.create({
     width: 55,
     letterSpacing: 0,
     lineHeight: 33,
-    borderBottomWidth: 3,
-    borderRadius: 2,
-    borderBottomColor: '#FFA222',
   },
   dropDownContent: {
     flexDirection: 'row',
@@ -152,10 +185,24 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   arrow: {
-    height: 7.15,
-    width: 15,
-    marginLeft: 5,
-    marginTop: 15,
+    height: 8,
+    width: 13,
+    marginLeft: 8,
+    marginTop: 18,
+  },
+  button: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 15,
+    bottom: 70,
+  },
+  addButton: {
+    resizeMode: 'contain',
+    width: 48,
+    height: 48,
   },
 });
 

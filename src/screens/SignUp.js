@@ -1,7 +1,7 @@
 import React from 'react';
 import {View,StyleSheet,TextInput,Image} from 'react-native';
 import InputField from '../components/InputField';
-import ButtonField from '../components/ButtonField';
+import {ButtonField} from '../components/ButtonField';
 
 const SignUp = ({navigation}) => {
   const handlesubmit=()=>{
