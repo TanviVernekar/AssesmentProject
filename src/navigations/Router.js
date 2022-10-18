@@ -17,7 +17,7 @@ const Router=()=>{
         <NavigationContainer theme={theme} onReady={()=> RNBootSplash.hide()} >
         <Stack.Navigator initialRouteName="MainScreen">
           <Stack.Screen name="MainScreen" component={MainScreen} options={{headerShown:false}}/>
-          <Stack.Screen name="AppScreen" component={AppScreen} />
+          <Stack.Screen name="AppScreen" component={AppScreen} options={{headerShown:false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
