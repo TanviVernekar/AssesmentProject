@@ -10,7 +10,6 @@
 // import { useRoute } from '@react-navigation/native';
 // import { useDispatch } from 'react-redux';
 
-
 // const EditScreen = ({navigation}) => {
 //   // const route = useRoute();
 //   // const dispatch = useDispatch();
@@ -22,7 +21,7 @@
 //       <Text style={styles.text}>Site Name</Text>
 //       <TextInput style={styles.input}></TextInput>
 //       <Text style={styles.text}>Sector/Folder</Text>
-      
+
 //       <TextInput style={styles.input}></TextInput>
 //       <Text style={styles.text}>User Name</Text>
 //       <TextInput style={styles.input}></TextInput>
@@ -104,7 +103,7 @@ import {
   TextInput,
   Pressable,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -114,7 +113,7 @@ import {Formik} from 'formik';
 
 const SiteDetails = ({navigation}) => {
   const route = useRoute();
-  
+
   const dispatch = useDispatch();
   return (
     <SafeAreaView>
@@ -139,21 +138,18 @@ const SiteDetails = ({navigation}) => {
               <TextInput
                 style={styles.input}
                 name="url"
-                editable={false}
                 value={route.params.data.url}
               />
               <Text style={styles.text}>Site Name</Text>
               <TextInput
                 style={styles.input}
                 name="sitename"
-                editable={false}
                 value={route.params.data.sitename}
               />
               <Text style={styles.text}>Sector/Folder</Text>
               <View style={styles.inputBox1}>
                 <TextInput
                   style={styles.inputText1}
-                  editable={false}
                   selectTextOnFocus={false}
                   value={route.params.data.sector}
                 />
@@ -188,7 +184,7 @@ const SiteDetails = ({navigation}) => {
         )}
       </Formik>
       <View style={styles.buttonview}>
-      <TouchableOpacity
+        <TouchableOpacity
           style={styles.rectangle}
           onPress={() => navigation.navigate('AppScreen')}>
           <Text style={styles.update}>Update</Text>
@@ -273,22 +269,22 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
   update: {
-        height: 28,
-        width: 65,
-        color: '#FFFFFF',
-        fontSize: 20,
-        fontWeight: '500',
-        lineHeight: 28,
-        textAlign: 'center',
-      },
-      rectangle: {
-        height: 55,
-        width: 400,
-        backgroundColor: '#0E85FF',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      buttonview: {
-        paddingTop: 100,
-      },
+    height: 28,
+    width: 65,
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: '500',
+    lineHeight: 28,
+    textAlign: 'center',
+  },
+  rectangle: {
+    height: 55,
+    width: 400,
+    backgroundColor: '#0E85FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonview: {
+    paddingTop: 100,
+  },
 });

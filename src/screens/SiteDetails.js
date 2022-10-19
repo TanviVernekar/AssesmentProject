@@ -18,7 +18,7 @@ const SiteDetails = ({navigation}) => {
   const route = useRoute();
   const dispatch = useDispatch();
 
-const data=route.params.item;
+  const data = route.params.item;
   return (
     <SafeAreaView>
       <StatusBar
@@ -38,7 +38,7 @@ const data=route.params.item;
         <Text style={styles.sitename}>Site Details</Text>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate('EditScreen',{data})}>
+          onPress={() => navigation.navigate('EditScreen', {data})}>
           <Text style={styles.textheader}>Edit</Text>
         </Pressable>
       </View>
