@@ -1,22 +1,24 @@
 import React from 'react';
 import {View, Text, StyleSheet, SafeAreaView, TextInput} from 'react-native';
 import AddSite from './AddSite';
+import { useRoute } from '@react-navigation/native';
 
 const SiteDetails = () => {
+  const route=useRoute();
   return (
     <SafeAreaView>
       <Text style={styles.text}>URL</Text>
-      <TextInput style={styles.input}></TextInput>
-      <Text style={styles.text}>Site Name</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput style={styles.input} editable={false} selectTextOnFocus={false} value={route.params.item.link}></TextInput>
+      <Text style={styles.text} >Site Name</Text>
+      <TextInput style={styles.input} editable={false} selectTextOnFocus={false} value={route.params.item.key}></TextInput>
       <Text style={styles.text}>Sector/Folder</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput style={styles.input} editable={false} selectTextOnFocus={false} value={route.params.item.folder}></TextInput>
       <Text style={styles.text}>User Name</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput style={styles.input} editable={false} selectTextOnFocus={false} value={route.params.item.username}></TextInput>
       <Text style={styles.text}>Site Password</Text>
-      <TextInput style={styles.input}></TextInput>
+      <TextInput style={styles.input} editable={false} selectTextOnFocus={false} value={route.params.item.password}></TextInput>
       <Text style={styles.text}>Notes</Text>
-      <TextInput style={styles.description}></TextInput>
+      <TextInput style={styles.description} editable={false} selectTextOnFocus={false} value={route.params.item.notes}></TextInput>
     </SafeAreaView>
   );
 };
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     borderColor: '#D7D7D7',
     borderWidth: 1,
     marginBottom: 5,
+    paddingStart:5
   },
   description: {
     backgroundColor: '#F5F7FB',

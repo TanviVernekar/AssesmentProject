@@ -8,31 +8,118 @@ import {
   ImageBackground,
   StatusBar,
   TextInput,
+  Pressable,
+  Button
 } from 'react-native';
 import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
 
+import {Formik, Field} from 'formik';
+import * as yup from 'yup';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const SignIn = ({navigation}) => {
-    const handlesubmit=()=>{
-      alert(
-        `Congrats!!! Success \n Signin to access the vault`)
-        return navigation.navigate('AppScreen')
-    }
+  const signinValidationSchema = yup.object().shape({
+    mobileno: yup
+      .string()
+      .matches(/(\d){10}\b/, 'Enter a valid mobile number')
+      .required('Phone number is required'),
+    mpin: yup
+      .string()
+      .matches(/(\d){4}\b/, 'mPin must have a number')
+      .max(4, ({max}) => `mPin must be${max} of characters`)
+      .required('mPin is required'),
+  });
+
   return (
     <View>
       <View>
-        <View style={styles.container}>
-          <InputField placeholder="Mobile Number"/>
-          <View style={styles.SectionStyle}>
-            <TextInput placeholder="MPin"></TextInput>
-            <Image
-              source={require('/Volumes/Development/AssesmentProject/src/assets/images/eye.png')}
-              style={styles.eyeicon}
-            />
-          </View>
-        </View>
-        <Text style={styles.text}>Forgot your password?</Text>
-        <ButtonField onPress={()=>handlesubmit()}/>
+        <Formik
+          validationSchema={signinValidationSchema}
+          initialValues={{mobileno: '', mpin: ''}}
+          onSubmit={async values => {
+            console.log(values);
+            try {
+              const jsonValue = await AsyncStorage.getItem(values.mobileno);
+              if (jsonValue != null) {
+                parseValue = JSON.parse(jsonValue);
+
+                if (
+                  values.mobileno === parseValue.mobileno &&
+                  values.mpin === parseValue.mpin
+                ) {
+                  alert('Successfully Logged In');
+                  navigation.navigate('AppScreen');
+                } else {
+                  Alert('Enter Correct Mobile Number and MPin');
+                }
+              }
+            } catch (err) {
+              console.log(err);
+            }
+          }}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            isValid,
+          }) => (
+            <>
+              <View style={styles.container}>
+                <InputField
+                  placeholder="Mobile Number"
+                  placeholderTextColor={'grey'}
+                  onChangeText={handleChange('mobileno')}
+                  onBlur={handleBlur('mobileno')}
+                  value={values.mobileno}
+                  keyboardType="number-pad"
+                />
+
+                {errors.mobileno && (
+                  <Text style={{fontSize: 10, color: 'red'}}>
+                    {errors.mobileno}
+                  </Text>
+                )}
+
+                <View style={styles.SectionStyle}>
+                  <TextInput
+                    name="mpin"
+                    placeholder="MPin"
+                    style={styles.textInput}
+                    onChangeText={handleChange('mpin')}
+                    placeholderTextColor={'grey'}
+                    onBlur={handleBlur('mpin')}
+                    value={values.mpin}
+                    keyboardType="number-pad"
+                    secureTextEntry
+                  />
+                  <Image
+                    source={require('/Volumes/Development/AssesmentProject/src/assets/images/eye.png')}
+                    style={styles.eyeicon}
+                  />
+                </View>
+                {errors.mpin && (
+                    <Text style={{fontSize: 10, color: 'red'}}>
+                      {errors.mpin}
+                    </Text>
+                  )}
+              </View>
+              <Pressable>
+              <Text style={styles.text}>Forgot your password?</Text>
+              </Pressable>
+              
+              
+                <ButtonField
+                  name="SIGN IN"
+                  onPress={handleSubmit}
+                  disabled={!isValid}
+                />
+            
+            </>
+          )}
+        </Formik>
       </View>
 
       <View style={styles.fingerprintIcon}>
@@ -72,7 +159,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 10,
     fontWeight: 'bold',
-    marginTop:30
+    marginTop: 30,
   },
   text: {
     height: 17,
@@ -98,4 +185,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+ 
 });

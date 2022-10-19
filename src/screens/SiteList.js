@@ -17,35 +17,53 @@ const SITES = [
       key: 'Facebook',
       source: require('../assets/images/facebookIcon.png'),
       link: 'www.facebook.com',
+      password:'facebook',
+      notes:'Facebook notes',
+      username:'tanvi',
+      
+      folder:'Social Media'
     },
     {
       key: 'Youtube',
       source: require('../assets/images/youtubeIcon.png'),
       link: 'www.youtube.com/ssmraok',
+      password:'Youtube',
+      notes:'Youtube notes',
+      username:'tanvi',
+      
+      folder:'Social Media'
     },
     {
       key: 'Twitter',
       source: require('../assets/images/twitterIcon.png'),
       link: 'www.twitter.com',
+      password:'Twitter',
+      notes:'Twitter notes',
+      username:'tanvi',
+     
+      folder:'Social Media'
     },
     {
       key: 'Instagram',
       source: require('../assets/images/instagramIcon.png'),
       link: 'www.instagram.com',
+      password:'Instagram',
+      notes:'Instagram notes',
+      username:'tanvi',
+      
+      folder:'Social Media'
     },
   ];
   
   const SiteList = ({navigation}) => {
-    const handleSubmit=()=>{
-      return navigation.navigate('Site Details');
-    }
+    
     return (
       <View style={styles.container}>
         <FlatList
           data={SITES}
           renderItem={({item}) => (
             <View>
-              <Pressable onPress={handleSubmit}>
+              <Pressable onPress={()=>navigation.navigate('Site Details',{item})}>
             <View style={styles.itemContainer}>
               <View>
                 <View style={styles.topItem}>

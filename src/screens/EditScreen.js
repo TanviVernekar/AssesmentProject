@@ -7,7 +7,7 @@ import SiteDetails from "./SiteDetails";
 const EditScreen=({navigation})=>{
     return(
         <SafeAreaView style={{marginTop:-12}}>
-          {/* <Text style={styles.text}>URL</Text>
+          <Text style={styles.text}>URL</Text>
           <TextInput style={styles.input}></TextInput>
           <Text style={styles.text}>Site Name</Text>
           <TextInput style={styles.input}></TextInput>
@@ -18,8 +18,7 @@ const EditScreen=({navigation})=>{
           <Text style={styles.text}>Site Password</Text>
           <TextInput style={styles.input}></TextInput>
           <Text style={styles.text}>Notes</Text>
-          <TextInput style={styles.description}></TextInput> */}
-          <SiteDetails/>
+          <TextInput style={styles.description}></TextInput>
           <View style={{paddingTop:100}}>
           <TouchableOpacity style={styles.rectangle} onPress={()=>navigation.navigate("AppScreen")}>
                     <Text style={styles.update}>Update</Text>

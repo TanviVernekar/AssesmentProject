@@ -4,12 +4,12 @@ import { TouchableOpacity,StyleSheet,View,Text } from "react-native";
 
 
 
-export const ButtonField = ({onPress})=>{
+export const ButtonField = (props)=>{
     
     return(
         <View>
-            <TouchableOpacity style={styles.button} onPress={onPress}>
-                <Text style={styles.text}>SIGN IN</Text>
+            <TouchableOpacity style={styles.button} onPress={props.onPress}>
+                <Text style={styles.text}>{props.name}</Text>
             </TouchableOpacity>
         </View>
     )

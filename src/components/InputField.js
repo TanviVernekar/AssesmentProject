@@ -1,19 +1,19 @@
 import React from "react";
 import { View,Text,Image, SafeAreaView,StyleSheet, ImageBackground,StatusBar, TextInput} from "react-native";
 
-const InputField=({placeholder})=>{
+const InputField=(props)=>{
     return(
         <View>
         <TextInput 
-            placeholder={placeholder}
-            style={styles.textInput}>
+            placeholder={props.placeholder}
+            style={styles.textInput}
+            name={props.name}
+            keyboardType={props.keyboardType}
+            placeholderTextColor={props.placeholderTextColor}
+            onChangeText={props.onChangeText}
+            onBlur={props.onBlur}
+            value={props.value}>
         </TextInput>
-        {/* <View style={styles.SectionStyle}>
-            <TextInput 
-                placeholder="MPin">   
-            </TextInput>
-            <Image source={require("/Volumes/Development/AssesmentProject/src/assets/images/eye_on.png")} style={styles.eyeicon}/>
-        </View> */}
       </View>
     )
 

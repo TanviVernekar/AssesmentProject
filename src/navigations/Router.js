@@ -9,6 +9,7 @@ import AddSite from '../screens/AddSite';
 import SiteDetails from '../screens/SiteDetails';
 import EditScreen from '../screens/EditScreen';
 import {Button, Pressable} from 'react-native';
+import SignIn from '../screens/SignIn';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ const Router = () => {
           component={AppScreen}
           options={{headerShown: false}}
         />
+         
         <Stack.Screen
           name="Add Site"
           component={AddSite}
