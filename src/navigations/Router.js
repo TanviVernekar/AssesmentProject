@@ -44,11 +44,7 @@ const Router = () => {
         <Stack.Screen
           name="Site Details"
           component={SiteDetails}
-          options={({navigation})=>({
-            headerStyle: {backgroundColor: '#0E85FF'},
-            headerTintColor: 'white',
-            headerRight: () => (<Button onPress={()=>navigation.navigate('EditScreen')} title="Edit" color="#FFFFFF" />),
-          })}
+          options={{headerShown:false}}
           />
           <Stack.Screen name="EditScreen"
           component={EditScreen}

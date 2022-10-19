@@ -10,57 +10,58 @@ import {
   Pressable,
 } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialIcons"
+import { useDispatch, useSelector } from 'react-redux';
 
 
-const SITES = [
+const value = [
     {
-      key: 'Facebook',
+      sitename: 'Facebook',
       source: require('../assets/images/facebookIcon.png'),
-      link: 'www.facebook.com',
-      password:'facebook',
+      url: 'www.facebook.com',
+      sitepassword:'facebook',
       notes:'Facebook notes',
       username:'tanvi',
-      
-      folder:'Social Media'
+      sector:'Social Media'
     },
     {
-      key: 'Youtube',
+      sitename: 'Youtube',
       source: require('../assets/images/youtubeIcon.png'),
-      link: 'www.youtube.com/ssmraok',
-      password:'Youtube',
+      url: 'www.youtube.com/ssmraok',
+      sitepassword:'Youtube',
       notes:'Youtube notes',
       username:'tanvi',
       
-      folder:'Social Media'
+      sector:'Social Media'
     },
     {
-      key: 'Twitter',
+      sitename: 'Twitter',
       source: require('../assets/images/twitterIcon.png'),
-      link: 'www.twitter.com',
-      password:'Twitter',
+      url: 'www.twitter.com',
+      sitepassword:'Twitter',
       notes:'Twitter notes',
       username:'tanvi',
      
       folder:'Social Media'
     },
     {
-      key: 'Instagram',
+      sitename: 'Instagram',
       source: require('../assets/images/instagramIcon.png'),
-      link: 'www.instagram.com',
-      password:'Instagram',
+      url: 'www.instagram.com',
+      sitepassword:'Instagram',
       notes:'Instagram notes',
       username:'tanvi',
-      
       folder:'Social Media'
     },
   ];
   
   const SiteList = ({navigation}) => {
+    const value=useSelector(state=>state.manager.value);
+    
     
     return (
       <View style={styles.container}>
         <FlatList
-          data={SITES}
+          data={value}
           renderItem={({item}) => (
             <View>
               <Pressable onPress={()=>navigation.navigate('Site Details',{item})}>
@@ -70,7 +71,7 @@ const SITES = [
                   <Image source={item.source}></Image>
   
                   <View >
-                    <Text style={styles.socialText}>{item.key}</Text>
+                    <Text style={styles.socialText}>{item.sitename}</Text>
                     <View style={styles.copyContent}>
                         <Icon name="content-copy" size={15} color="" />
                       <Text style={styles.copyText}> Copy Password</Text>
@@ -79,7 +80,7 @@ const SITES = [
                 </View>
   
                 <View style={styles.bottomItem}>
-                  <Text style={styles.link}>{item.link}</Text>
+                  <Text style={styles.link}>{item.url}</Text>
                 </View>
               </View>
             </View>

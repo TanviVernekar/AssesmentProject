@@ -14,6 +14,7 @@ import {
 import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
 
+
 import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -50,8 +51,9 @@ const SignIn = ({navigation}) => {
                 ) {
                   alert('Successfully Logged In');
                   navigation.navigate('AppScreen');
+                  
                 } else {
-                  Alert('Enter Correct Mobile Number and MPin');
+                  alert('Enter Correct Mobile Number and MPin');
                 }
               }
             } catch (err) {

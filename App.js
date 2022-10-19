@@ -119,15 +119,15 @@
 import React from "react";
 import {View,Text} from'react-native';
 import Router from "./src/navigations/Router";
-import MainScreen from "./src/screens/MainScreen";
-import SignIn from './src/screens/SignIn';
-
+import {Provider} from 'react-redux';
+import { Store } from "./src/redux/Store";
 const App=()=>{
   return(
-    <>
-      {/* <MainScreen/> */}
+    
+    <Provider store={Store}>
       <Router/>
-    </>
+    </Provider>
+  
   )
 }
 export default App;
