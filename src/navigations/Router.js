@@ -11,7 +11,6 @@ import EditScreen from '../screens/EditScreen';
 import {Button, Pressable} from 'react-native';
 import SignIn from '../screens/SignIn';
 
-
 const Stack = createNativeStackNavigator();
 const theme = {
   colors: {
@@ -32,7 +31,7 @@ const Router = () => {
           component={AppScreen}
           options={{headerShown: false}}
         />
-         
+
         <Stack.Screen
           name="Add Site"
           component={AddSite}
@@ -44,11 +43,9 @@ const Router = () => {
         <Stack.Screen
           name="Site Details"
           component={SiteDetails}
-          options={{headerShown:false}}
-          />
-          <Stack.Screen name="EditScreen"
-          component={EditScreen}
+          options={{headerShown: false}}
         />
+        <Stack.Screen name="EditScreen" component={EditScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

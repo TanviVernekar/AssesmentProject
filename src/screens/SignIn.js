@@ -3,19 +3,14 @@ import {
   View,
   Text,
   Image,
-  SafeAreaView,
   StyleSheet,
-  ImageBackground,
-  StatusBar,
   TextInput,
   Pressable,
-  Button
 } from 'react-native';
 import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
 
-
-import {Formik, Field} from 'formik';
+import {Formik} from 'formik';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -51,7 +46,6 @@ const SignIn = ({navigation}) => {
                 ) {
                   alert('Successfully Logged In');
                   navigation.navigate('AppScreen');
-                  
                 } else {
                   alert('Enter Correct Mobile Number and MPin');
                 }
@@ -80,9 +74,7 @@ const SignIn = ({navigation}) => {
                 />
 
                 {errors.mobileno && (
-                  <Text style={{fontSize: 10, color: 'red'}}>
-                    {errors.mobileno}
-                  </Text>
+                  <Text style={styles.error}>{errors.mobileno}</Text>
                 )}
 
                 <View style={styles.SectionStyle}>
@@ -102,23 +94,17 @@ const SignIn = ({navigation}) => {
                     style={styles.eyeicon}
                   />
                 </View>
-                {errors.mpin && (
-                    <Text style={{fontSize: 10, color: 'red'}}>
-                      {errors.mpin}
-                    </Text>
-                  )}
+                {errors.mpin && <Text style={styles.error}>{errors.mpin}</Text>}
               </View>
               <Pressable>
-              <Text style={styles.text}>Forgot your password?</Text>
+                <Text style={styles.text}>Forgot your password?</Text>
               </Pressable>
-              
-              
-                <ButtonField
-                  name="SIGN IN"
-                  onPress={handleSubmit}
-                  disabled={!isValid}
-                />
-            
+
+              <ButtonField
+                name="SIGN IN"
+                onPress={handleSubmit}
+                disabled={!isValid}
+              />
             </>
           )}
         </Formik>
@@ -187,5 +173,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
- 
+  error: {
+    fontSize: 10,
+    color: 'red',
+  },
 });

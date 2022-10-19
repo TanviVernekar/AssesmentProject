@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import SiteList from '../screens/SiteList';
 import SearchField from '../components/SearchField';
 
@@ -131,8 +130,6 @@ const styles = StyleSheet.create({
   },
   menu: {
     flexDirection: 'row',
-    // height: 600,
-    // width: 400,
     backgroundColor: '#FAFAFA',
     marginTop: 10,
   },
