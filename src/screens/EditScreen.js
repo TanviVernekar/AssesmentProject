@@ -104,6 +104,7 @@ import {
   Pressable,
   StatusBar,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -113,83 +114,89 @@ import {Formik} from 'formik';
 
 const SiteDetails = ({navigation}) => {
   const route = useRoute();
+  const [secureTextEntry,setSecureTextEntry]=useState(true);
+  const [icon,setIcon]=useState('eye');
 
   const dispatch = useDispatch();
   return (
     <SafeAreaView>
-      <StatusBar
-        barStyle="dark-content"
-        hidden={false}
-        backgroundColor="#0E85FF"
-      />
-      <Formik
-        initialValues={{
-          url: '',
-          sitename: '',
-          sector: '',
-          username: '',
-          sitepassword: '',
-          notes: '',
-        }}>
-        {({handleChange, handleBlur, values}) => (
-          <>
-            <View>
-              <Text style={styles.text}>URL</Text>
-              <TextInput
-                style={styles.input}
-                name="url"
-                value={route.params.data.url}
-              />
-              <Text style={styles.text}>Site Name</Text>
-              <TextInput
-                style={styles.input}
-                name="sitename"
-                value={route.params.data.sitename}
-              />
-              <Text style={styles.text}>Sector/Folder</Text>
-              <View style={styles.inputBox1}>
+      <ScrollView>
+        <StatusBar
+          barStyle="dark-content"
+          hidden={false}
+          backgroundColor="#0E85FF"
+        />
+        <Formik
+          initialValues={{
+            url: '',
+            sitename: '',
+            sector: '',
+            username: '',
+            sitepassword: '',
+            notes: '',
+          }}>
+          {({handleChange, handleBlur, values}) => (
+            <>
+              <View>
+                <Text style={styles.text}>URL</Text>
                 <TextInput
-                  style={styles.inputText1}
-                  selectTextOnFocus={false}
-                  value={route.params.data.sector}
+                  style={styles.input}
+                  name="url"
+                  value={route.params.data.url}
                 />
-                <Icon name="chevron-down" size={25} color="#0E95FF" />
-              </View>
-              <Text style={styles.text}>User Name</Text>
-              <TextInput
-                style={styles.input}
-                name="username"
-                editable={false}
-                value={route.params.data.username}
-              />
-              <Text style={styles.text}>Site Password</Text>
-              <View style={styles.inputBox1}>
+                <Text style={styles.text}>Site Name</Text>
                 <TextInput
-                  style={styles.inputText1}
+                  style={styles.input}
+                  name="sitename"
+                  value={route.params.data.sitename}
+                />
+                <Text style={styles.text}>Sector/Folder</Text>
+                <View style={styles.inputBox1}>
+                  <TextInput
+                    style={styles.inputText1}
+                    selectTextOnFocus={false}
+                    value={route.params.data.sector}
+                  />
+                  <Icon name="chevron-down" size={25} color="#0E95FF" />
+                </View>
+                <Text style={styles.text}>User Name</Text>
+                <TextInput
+                  style={styles.input}
+                  name="username"
                   editable={false}
-                  selectTextOnFocus={false}
-                  value={route.params.data.sitepassword}
-                  secureTextEntry
+                  value={route.params.data.username}
                 />
-                <Icon name="eye" size={25} />
+                <Text style={styles.text}>Site Password</Text>
+                <View style={styles.inputBox1}>
+                  <TextInput
+                    style={styles.inputText1}
+                    editable={false}
+                    selectTextOnFocus={false}
+                    value={route.params.data.sitepassword}
+                    secureTextEntry={secureTextEntry}
+                  />
+                        <Icon name={icon} size={25} onPress={()=>{
+                  setSecureTextEntry(!secureTextEntry);
+                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
+                </View>
+                <Text style={styles.text}>Notes</Text>
+                <TextInput
+                  style={styles.description}
+                  editable={false}
+                  value={route.params.data.notes}
+                />
               </View>
-              <Text style={styles.text}>Notes</Text>
-              <TextInput
-                style={styles.description}
-                editable={false}
-                value={route.params.data.notes}
-              />
-            </View>
-          </>
-        )}
-      </Formik>
-      <View style={styles.buttonview}>
-        <TouchableOpacity
-          style={styles.rectangle}
-          onPress={() => navigation.navigate('AppScreen')}>
-          <Text style={styles.update}>Update</Text>
-        </TouchableOpacity>
-      </View>
+            </>
+          )}
+        </Formik>
+        <View style={styles.buttonview}>
+          <TouchableOpacity
+            style={styles.rectangle}
+            onPress={() => navigation.navigate('AppScreen')}>
+            <Text style={styles.update}>Update</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

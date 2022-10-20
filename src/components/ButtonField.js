@@ -50,7 +50,7 @@ const styles2 = StyleSheet.create({
     // borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 85,
+    marginTop: 75,
     marginRight: 1,
   },
   textInput: {

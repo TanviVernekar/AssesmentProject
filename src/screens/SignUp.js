@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, StyleSheet, TextInput, Image, Text} from 'react-native';
 import InputField from '../components/InputField';
 import {ButtonField} from '../components/ButtonField';
@@ -26,6 +26,9 @@ const SignUp = ({navigation}) => {
       .oneOf([yup.ref('mpin')], 'mPin do not match')
       .required('Confirm mPin is required'),
   });
+
+  const [secureTextEntry,setSecureTextEntry]=useState(true);
+  const [icon,setIcon]=useState('eye');
   return (
     <View>
       <Formik
@@ -88,12 +91,15 @@ const SignUp = ({navigation}) => {
                   placeholderTextColor={'grey'}
                   onBlur={handleBlur('conformmpin')}
                   value={values.conformmpin}
-                  secureTextEntry
+                  secureTextEntry={secureTextEntry}
                   keyboardType="numeric"
                 />
 
-                <Icon name="eye-with-line" size={25} />
+                <Icon name={icon} size={25} onPress={()=>{
+                  setSecureTextEntry(!secureTextEntry);
+                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
               </View>
+
               {errors.conformmpin && (
                 <Text style={styles.error}>{errors.conformmpin}</Text>
               )}

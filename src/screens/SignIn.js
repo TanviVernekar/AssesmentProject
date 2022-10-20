@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -26,6 +27,9 @@ const SignIn = ({navigation}) => {
       .max(4, ({max}) => `mPin must be${max} of characters`)
       .required('mPin is required'),
   });
+
+  const [secureTextEntry,setSecureTextEntry]=useState(true);
+  const [icon,setIcon]=useState('eye');
 
   return (
     <View>
@@ -87,12 +91,11 @@ const SignIn = ({navigation}) => {
                     onBlur={handleBlur('mpin')}
                     value={values.mpin}
                     keyboardType="number-pad"
-                    secureTextEntry
+                    secureTextEntry={secureTextEntry}
                   />
-                  <Image
-                    source={require('/Volumes/Development/AssesmentProject/src/assets/images/eye.png')}
-                    style={styles.eyeicon}
-                  />
+                  <Icon name={icon} size={25} onPress={()=>{
+                  setSecureTextEntry(!secureTextEntry);
+                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
                 </View>
                 {errors.mpin && <Text style={styles.error}>{errors.mpin}</Text>}
               </View>
