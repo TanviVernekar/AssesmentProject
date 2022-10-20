@@ -95,7 +95,7 @@ const SignIn = ({navigation}) => {
                   />
                   <Icon name={icon} size={25} onPress={()=>{
                   setSecureTextEntry(!secureTextEntry);
-                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
+                  secureTextEntry ? setIcon("eye-with-line"):setIcon("eye")}} />
                 </View>
                 {errors.mpin && <Text style={styles.error}>{errors.mpin}</Text>}
               </View>

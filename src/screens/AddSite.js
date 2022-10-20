@@ -14,17 +14,32 @@ import {Formik} from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {add} from '../redux/PassmanagerSlice';
 import Toast from 'react-native-simple-toast';
+import * as yup from 'yup';
 
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 const AddSite = ({navigation}) => {
   const source = require('../assets/images/twitterIcon.png');
   const [values, setInputValue] = useState('');
   const dispatch = useDispatch();
+  const data = useSelector(state => state.manager.value);
+  console.log('i am data', data.length);
+
+  const handleReset = () => {};
+
+  const signupValidationSchema = yup.object().shape({
+    url: yup.string().required(),
+    sitename: yup.string().required(),
+    sector: yup.string().required(),
+    username: yup.string().required(),
+    sitepassword: yup.string().required(),
+    notes: yup.string().required(),
+  });
   return (
     <SafeAreaView>
       <ScrollView>
         <Formik
+          validationSchema={signupValidationSchema}
           initialValues={{
             url: '',
             sitename: '',
@@ -35,7 +50,18 @@ const AddSite = ({navigation}) => {
             source: source,
           }}
           onSubmit={async values => {
-            dispatch(add(values));
+            const obj = {
+              id: data.length + 1,
+              url: values.url,
+              sitename: values.sitename,
+              sector: values.sector,
+              username: values.username,
+              sitepassword: values.sitepassword,
+              notes: values.notes,
+              source: source,
+            };
+
+            dispatch(add(obj));
             console.log(values);
             try {
               // const jsonValue = JSON.stringify(values);
@@ -70,10 +96,10 @@ const AddSite = ({navigation}) => {
                 <TextInput
                   style={styles.input}
                   source={require('../assets/images/pathcopy.png')}
-                  name="folder"
-                  onChangeText={handleChange('folder')}
-                  onBlur={handleBlur('folder')}
-                  value={values.folder}
+                  name="sector"
+                  onChangeText={handleChange('sector')}
+                  onBlur={handleBlur('sector')}
+                  value={values.sector}
                 />
                 <Text style={styles.text}>User Name</Text>
                 <TextInput
@@ -87,18 +113,22 @@ const AddSite = ({navigation}) => {
                 <TextInput
                   style={styles.input}
                   source={require('../assets/images/eye.png')}
-                  name="password"
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                  value={values.password}
+                  name="sitepassword"
+                  onChangeText={handleChange('sitepassword')}
+                  onBlur={handleBlur('sitepassword')}
+                  value={values.sitepassword}
                   secureTextEntry
                   // keyboardType="numeric"
                 />
                 <Text style={styles.text}>Notes</Text>
-                <TextInput style={styles.description} />
+                <TextInput
+                  style={styles.description}
+                  value={values.notes}
+                  onChangeText={handleChange('notes')}
+                />
               </View>
               <View style={styles.buttonContainer}>
-                <CustomButton name="RESET" />
+                <CustomButton name="RESET" onPress={handleReset} />
                 <CustomButton name="SAVE" onPress={handleSubmit} />
               </View>
             </>

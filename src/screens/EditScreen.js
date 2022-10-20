@@ -1,99 +1,3 @@
-// import React from 'react';
-// import {
-//   View,
-//   StyleSheet,
-//   Text,
-//   TextInput,
-//   TouchableOpacity,
-// } from 'react-native';
-// import {SafeAreaView} from 'react-native-safe-area-context';
-// import { useRoute } from '@react-navigation/native';
-// import { useDispatch } from 'react-redux';
-
-// const EditScreen = ({navigation}) => {
-//   // const route = useRoute();
-//   // const dispatch = useDispatch();
-
-//   return (
-//     <SafeAreaView style={styles.view}>
-//       <Text style={styles.text}>URL</Text>
-//       <TextInput style={styles.input}></TextInput>
-//       <Text style={styles.text}>Site Name</Text>
-//       <TextInput style={styles.input}></TextInput>
-//       <Text style={styles.text}>Sector/Folder</Text>
-
-//       <TextInput style={styles.input}></TextInput>
-//       <Text style={styles.text}>User Name</Text>
-//       <TextInput style={styles.input}></TextInput>
-//       <Text style={styles.text}>Site Password</Text>
-//       <TextInput style={styles.input}></TextInput>
-//       <Text style={styles.text}>Notes</Text>
-//       <TextInput style={styles.description}></TextInput>
-//       <View style={styles.buttonview}>
-//         <TouchableOpacity
-//           style={styles.rectangle}
-//           onPress={() => navigation.navigate('AppScreen')}>
-//           <Text style={styles.update}>Update</Text>
-//         </TouchableOpacity>
-//       </View>
-//     </SafeAreaView>
-//   );
-// };
-// export default EditScreen;
-
-// const styles = StyleSheet.create({
-//   text: {
-//     height: 24,
-
-//     color: '#949CA5',
-//     fontSize: 18,
-//     letterSpacing: 0,
-//     lineHeight: 24,
-//     marginStart: 30,
-//     margin: 10,
-//   },
-//   input: {
-//     backgroundColor: '#F5F7FB',
-//     height: 41,
-//     width: 321,
-//     borderRadius: 4,
-//     marginStart: 30,
-//     borderColor: '#D7D7D7',
-//     borderWidth: 1,
-//     marginBottom: 5,
-//   },
-//   description: {
-//     backgroundColor: '#F5F7FB',
-//     height: 61,
-//     width: 321,
-//     borderRadius: 4,
-//     marginStart: 30,
-//     borderColor: '#D7D7D7',
-//     borderWidth: 1,
-//   },
-//   update: {
-//     height: 28,
-//     width: 65,
-//     color: '#FFFFFF',
-//     fontSize: 20,
-//     fontWeight: '500',
-//     lineHeight: 28,
-//     textAlign: 'center',
-//   },
-//   rectangle: {
-//     height: 55,
-//     width: 400,
-//     backgroundColor: '#0E85FF',
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-//   view: {
-//     marginTop: -12,
-//   },
-//   buttonview: {
-//     paddingTop: 100,
-//   },
-// });
 import React, {useState} from 'react';
 import {
   View,
@@ -111,13 +15,17 @@ import Icon from 'react-native-vector-icons/Entypo';
 import ICON from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
+import {edit} from '../redux/PassmanagerSlice';
 
-const SiteDetails = ({navigation}) => {
+const EditScreen = ({navigation}) => {
   const route = useRoute();
-  const [secureTextEntry,setSecureTextEntry]=useState(true);
-  const [icon,setIcon]=useState('eye');
-
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [icon, setIcon] = useState('eye');
+  const source = require('../assets/images/twitterIcon.png');
   const dispatch = useDispatch();
+  const siteid = route.params.data.id;
+  console.log('i am ', route);
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -128,34 +36,56 @@ const SiteDetails = ({navigation}) => {
         />
         <Formik
           initialValues={{
-            url: '',
-            sitename: '',
-            sector: '',
-            username: '',
-            sitepassword: '',
-            notes: '',
+            url: route.params.data.url,
+            sitename: route.params.data.sitename,
+            sector: route.params.data.sector,
+            username: route.params.data.username,
+            sitepassword: route.params.data.sitepassword,
+            notes: route.params.data.notes,
+            source: route.params.data.source,
+          }}
+          onSubmit={async values => {
+            const obj = {
+              id: siteid,
+              url: values.url,
+              sitename: values.sitename,
+              sector: values.sector,
+              username: values.username,
+              sitepassword: values.sitepassword,
+              notes: values.notes,
+              source: source,
+            };
+            dispatch(edit(obj));
+            navigation.navigate('AppScreen');
           }}>
-          {({handleChange, handleBlur, values}) => (
+          {({handleChange, handleBlur, handleSubmit, values}) => (
             <>
               <View>
                 <Text style={styles.text}>URL</Text>
                 <TextInput
                   style={styles.input}
                   name="url"
-                  value={route.params.data.url}
+                  onChangeText={handleChange('url')}
+                  onBlur={handleBlur('url')}
+                  value={values.url}
                 />
                 <Text style={styles.text}>Site Name</Text>
                 <TextInput
                   style={styles.input}
                   name="sitename"
-                  value={route.params.data.sitename}
+                  onChangeText={handleChange('sitename')}
+                  onBlur={handleBlur('sitename')}
+                  value={values.sitename}
                 />
                 <Text style={styles.text}>Sector/Folder</Text>
                 <View style={styles.inputBox1}>
                   <TextInput
                     style={styles.inputText1}
+                    name="sector"
                     selectTextOnFocus={false}
-                    value={route.params.data.sector}
+                    onChangeText={handleChange('sector')}
+                    onBlur={handleBlur('sector')}
+                    value={values.sector}
                   />
                   <Icon name="chevron-down" size={25} color="#0E95FF" />
                 </View>
@@ -164,43 +94,55 @@ const SiteDetails = ({navigation}) => {
                   style={styles.input}
                   name="username"
                   editable={false}
-                  value={route.params.data.username}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  value={values.username}
                 />
                 <Text style={styles.text}>Site Password</Text>
                 <View style={styles.inputBox1}>
                   <TextInput
                     style={styles.inputText1}
                     editable={false}
+                    name="sitepassword"
                     selectTextOnFocus={false}
-                    value={route.params.data.sitepassword}
+                    onChangeText={handleChange('sitepassword')}
+                    onBlur={handleBlur('sitepassword')}
+                    value={values.sitepassword}
                     secureTextEntry={secureTextEntry}
                   />
-                        <Icon name={icon} size={25} onPress={()=>{
-                  setSecureTextEntry(!secureTextEntry);
-                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
+                  <Icon
+                    name={icon}
+                    size={25}
+                    onPress={() => {
+                      setSecureTextEntry(!secureTextEntry);
+                      secureTextEntry
+                        ? setIcon('eye-with-line')
+                        : setIcon('eye');
+                    }}
+                  />
                 </View>
                 <Text style={styles.text}>Notes</Text>
                 <TextInput
                   style={styles.description}
                   editable={false}
-                  value={route.params.data.notes}
+                  value={values.notes}
                 />
+              </View>
+              <View style={styles.buttonview}>
+                <TouchableOpacity
+                  style={styles.rectangle}
+                  onPress={handleSubmit}>
+                  <Text style={styles.update}>Update</Text>
+                </TouchableOpacity>
               </View>
             </>
           )}
         </Formik>
-        <View style={styles.buttonview}>
-          <TouchableOpacity
-            style={styles.rectangle}
-            onPress={() => navigation.navigate('AppScreen')}>
-            <Text style={styles.update}>Update</Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
-export default SiteDetails;
+export default EditScreen;
 
 const styles = StyleSheet.create({
   text: {

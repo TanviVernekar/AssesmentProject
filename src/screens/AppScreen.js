@@ -12,9 +12,12 @@ import {
 } from 'react-native';
 import SiteList from '../screens/SiteList';
 import SearchField from '../components/SearchField';
+import {useDispatch} from 'react-redux';
+import {filter} from '../redux/PassmanagerSlice';
 
 const AppScreen = ({navigation}) => {
   const [clicked, setClicked] = useState(false);
+  const dispatch = useDispatch();
 
   const handlePress = () => {
     return navigation.navigate('Add Site');
@@ -56,7 +59,7 @@ const AppScreen = ({navigation}) => {
 
       <View style={styles.menu}>
         {clicked ? (
-          <SearchField />
+          <SearchField onChangeText={text => dispatch(filter(text))} />
         ) : (
           <>
             <View>

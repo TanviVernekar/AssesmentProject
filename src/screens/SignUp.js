@@ -97,7 +97,7 @@ const SignUp = ({navigation}) => {
 
                 <Icon name={icon} size={25} onPress={()=>{
                   setSecureTextEntry(!secureTextEntry);
-                  secureTextEntry ? setIcon("eye"):setIcon("eye-with-line")}} />
+                  secureTextEntry ? setIcon("eye-with-line"):setIcon("eye")}} />
               </View>
 
               {errors.conformmpin && (

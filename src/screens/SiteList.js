@@ -14,6 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 const value = [
   {
+    id: 1,
     sitename: 'Facebook',
     source: require('../assets/images/facebookIcon.png'),
     url: 'www.facebook.com',
@@ -23,6 +24,7 @@ const value = [
     sector: 'Social Media',
   },
   {
+    id: 2,
     sitename: 'Youtube',
     source: require('../assets/images/youtubeIcon.png'),
     url: 'www.youtube.com/ssmraok',
@@ -33,6 +35,7 @@ const value = [
     sector: 'Social Media',
   },
   {
+    id: 3,
     sitename: 'Twitter',
     source: require('../assets/images/twitterIcon.png'),
     url: 'www.twitter.com',
@@ -43,6 +46,7 @@ const value = [
     folder: 'Social Media',
   },
   {
+    id: 3,
     sitename: 'Instagram',
     source: require('../assets/images/instagramIcon.png'),
     url: 'www.instagram.com',
@@ -63,7 +67,10 @@ const SiteList = ({navigation}) => {
         renderItem={({item}) => (
           <View>
             <Pressable
-              onPress={() => navigation.navigate('Site Details', {item})}>
+              onPress={() => {
+                console.log('Check Here!!!', item);
+                navigation.navigate('Site Details', {item});
+              }}>
               <View style={styles.itemContainer}>
                 <View>
                   <View style={styles.topItem}>
