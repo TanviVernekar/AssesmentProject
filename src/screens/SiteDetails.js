@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
   },
   container3: {
     padding: 10,
+    width:'100%'
   },
   container4: {
     flex: 0.5,
@@ -164,10 +165,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 60,
     alignItems: 'center',
+    justifyContent:"space-between"
   },
   text: {
     heigth: 24,
-    width: 200,
+    // width: 200,
     color: '#949CA5',
     fontSize: 20,
     letterSpacing: 0,
@@ -176,22 +178,23 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     height: 41,
-    width: 321,
+    // width: 321,
     borderWidth: 1,
     borderColor: '#D7D7D7',
     borderRadius: 4,
     backgroundColor: '#FSF7FB',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   inputText: {
     height: 41,
-    width: 280,
+    // width: 280,
+   
   },
   noteBox: {
     height: 81,
-    width: 321,
+    // width: 321,
     borderWidth: 1,
     borderColor: '#D7D7D7',
     borderRadius: 4,
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     height: 55,
-    width: 192.5,
+    // width: 192.5,
     backgroundColor: '#0E85FF',
     justifyContent: 'center',
   },
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
   description: {
     backgroundColor: '#F5F7FB',
     height: 61,
-    width: 321,
+    // width: 321,
     borderRadius: 4,
     marginStart: 30,
     borderColor: '#D7D7D7',

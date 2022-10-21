@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import {ButtonField} from '../components/ButtonField';
 import InputField from '../components/InputField';
@@ -33,7 +34,9 @@ const SignIn = ({navigation}) => {
 
   return (
     <View>
+      <ScrollView>
       <View>
+
         <Formik
           validationSchema={signinValidationSchema}
           initialValues={{mobileno: '', mpin: ''}}
@@ -122,6 +125,7 @@ const SignIn = ({navigation}) => {
           <Text> USE YOUR FINGERPRINT TO LOGIN </Text>
         </Text>
       </View>
+      </ScrollView>
     </View>
   );
 };
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     height: 54,
-    width: 300,
+    width: "100%",
     borderRadius: 4,
     justifyContent: 'space-between',
     paddingHorizontal: 10,

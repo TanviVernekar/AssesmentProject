@@ -8,9 +8,11 @@ import {
   StatusBar,
   FlatList,
   Pressable,
+  Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
+import { deleteSite } from '../redux/PassmanagerSlice';
 
 const value = [
   {
@@ -59,6 +61,7 @@ const value = [
 
 const SiteList = ({navigation}) => {
   const value = useSelector(state => state.manager.value);
+  const dispatch=useDispatch();
 
   return (
     <View style={styles.container}>
@@ -67,6 +70,20 @@ const SiteList = ({navigation}) => {
         renderItem={({item}) => (
           <View>
             <Pressable
+               onLongPress={() => {
+                Alert.alert('Confirm', 'Do you want to delete Site', [
+                  {
+                    text: 'ok',
+                    onPress: () => {
+                      dispatch(deleteSite({id: item.id}));
+                    },
+                  },
+                  {
+                    text: 'cancel',
+                  },
+                ]);
+              }
+            }
               onPress={() => {
                 console.log('Check Here!!!', item);
                 navigation.navigate('Site Details', {item});
@@ -103,6 +120,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 2,
+  
+  
   },
   item: {
     padding: 10,
@@ -113,9 +132,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 5,
     height: 115,
-    width: 365,
+    // width: 365,
+    justifyContent:"space-between",
     marginStart: 12,
-
     shadowColor: 'grey',
     shadowOffset: {
       width: 1,
@@ -134,12 +153,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    
   },
   bottomItem: {
     alignItems: 'center',
     paddingTop: 10,
     backgroundColor: '#FAFAFA',
-    width: 363,
+    // width: 363,
     marginStart: -10,
   },
   socialText: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, StyleSheet, TextInput, Image, Text} from 'react-native';
+import {View, StyleSheet, TextInput, Image, Text, ScrollView} from 'react-native';
 import InputField from '../components/InputField';
 import {ButtonField} from '../components/ButtonField';
 import Icon from 'react-native-vector-icons/Entypo';
@@ -31,6 +31,7 @@ const SignUp = ({navigation}) => {
   const [icon,setIcon]=useState('eye');
   return (
     <View>
+      <ScrollView>
       <Formik
         validationSchema={signupValidationSchema}
         initialValues={{mobileno: '', mpin: '', conformmpin: ''}}
@@ -113,6 +114,7 @@ const SignUp = ({navigation}) => {
           </>
         )}
       </Formik>
+      </ScrollView>
     </View>
   );
 };
@@ -122,6 +124,8 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     paddingTop: 25,
+    
+    
   },
   SectionStyle: {
     flexDirection: 'row',
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     height: 54,
-    width: 300,
+    width: "100%",
     borderRadius: 4,
     justifyContent: 'space-between',
     paddingHorizontal: 10,
@@ -142,10 +146,11 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 10,
     height: 54,
-    width: 300,
+    // width: 300,
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 40,
+    width:"100%"
   },
   error: {
     fontSize: 10,

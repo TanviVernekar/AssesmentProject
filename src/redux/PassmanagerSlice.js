@@ -68,6 +68,9 @@ export const PassmanagerSlice = createSlice({
         }
       });
     },
+    deleteSite :(state,action) => {
+      state.value = state.value.filter(value => value.id !== action.payload.id);
+    },
     filter: (state, action) => {
       state.value = state.filterValue.filter(site =>
         site.sitename.toLowerCase().includes(action.payload.toLowerCase()),
@@ -76,6 +79,6 @@ export const PassmanagerSlice = createSlice({
   },
 });
 
-export const {add, filter, edit} = PassmanagerSlice.actions;
+export const {add, filter,deleteSite, edit} = PassmanagerSlice.actions;
 
 export default PassmanagerSlice.reducer;

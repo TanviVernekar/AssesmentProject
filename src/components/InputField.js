@@ -12,7 +12,7 @@ import {
 
 const InputField = props => {
   return (
-    <View>
+    <View style={{width: "100%"}}>
       <TextInput
         placeholder={props.placeholder}
         style={styles.textInput}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: 10,
     height: 54,
-    width: 300,
+    // width: "100%",
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 40,

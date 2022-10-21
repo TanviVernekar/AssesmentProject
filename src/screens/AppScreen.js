@@ -62,6 +62,7 @@ const AppScreen = ({navigation}) => {
           <SearchField onChangeText={text => dispatch(filter(text))} />
         ) : (
           <>
+          <View style={{justifyContent:"space-between",alignItems:"center",flexDirection:"row",width:"100%"}}>
             <View>
               <Text style={styles.mainContent}>Sites</Text>
               <View style={styles.borderBottom} />
@@ -75,6 +76,7 @@ const AppScreen = ({navigation}) => {
                 source={require('../assets/images/pathcopy.png')}
                 style={styles.arrow}
               />
+            </View>
             </View>
           </>
         )}
@@ -94,10 +96,12 @@ const AppScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  
   },
   mainContainer: {
     flex: 1,
     backgroundColor: '#FAFAFA',
+    
   },
   header: {
     width: '100%',
@@ -135,6 +139,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#FAFAFA',
     marginTop: 10,
+    
+    
   },
   borderBottom: {
     borderBottomWidth: 4,
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
     color: '#3C4857',
     fontSize: 19.2,
     margin: 10,
-    marginLeft: '36%',
+    // marginLeft: '36%',
   },
   item: {
     color: 'white',

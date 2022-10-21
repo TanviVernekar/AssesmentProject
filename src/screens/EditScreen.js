@@ -93,7 +93,7 @@ const EditScreen = ({navigation}) => {
                 <TextInput
                   style={styles.input}
                   name="username"
-                  editable={false}
+                 
                   onChangeText={handleChange('username')}
                   onBlur={handleBlur('username')}
                   value={values.username}
@@ -102,7 +102,7 @@ const EditScreen = ({navigation}) => {
                 <View style={styles.inputBox1}>
                   <TextInput
                     style={styles.inputText1}
-                    editable={false}
+                    
                     name="sitepassword"
                     selectTextOnFocus={false}
                     onChangeText={handleChange('sitepassword')}
@@ -124,7 +124,7 @@ const EditScreen = ({navigation}) => {
                 <Text style={styles.text}>Notes</Text>
                 <TextInput
                   style={styles.description}
-                  editable={false}
+                  
                   value={values.notes}
                 />
               </View>
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     letterSpacing: 0,
     lineHeight: 24,
-    marginStart: 30,
+    marginStart: 10,
     margin: 10,
   },
   topbar: {
@@ -163,13 +163,15 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#F5F7FB',
     height: 41,
-    width: 321,
+    width: "100%",
     borderRadius: 4,
-    marginStart: 30,
+    marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
-    marginBottom: 5,
+    marginBottom: 5 ,
     paddingStart: 5,
+    
+    
   },
   sitename: {
     fontSize: 20,
@@ -180,9 +182,9 @@ const styles = StyleSheet.create({
   description: {
     backgroundColor: '#F5F7FB',
     height: 61,
-    width: 321,
+    // width: 321,
     borderRadius: 4,
-    marginStart: 30,
+    marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
   },
@@ -200,7 +202,7 @@ const styles = StyleSheet.create({
   },
   inputBox1: {
     height: 41,
-    width: 321,
+    // width: 321,
     borderWidth: 1,
     borderColor: '#D7D7D7',
     borderRadius: 4,
@@ -209,13 +211,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    marginStart: 30,
+    marginStart: 10,
     backgroundColor: '#F5F7FB',
+    justifyContent:"space-between"
   },
   inputText1: {
     height: 41,
-    width: 280,
+    // width: 280,
     lineHeight: 24,
+    
   },
   update: {
     height: 28,
@@ -228,12 +232,13 @@ const styles = StyleSheet.create({
   },
   rectangle: {
     height: 55,
-    width: 400,
+    // width: 400,
     backgroundColor: '#0E85FF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonview: {
     paddingTop: 100,
+    paddingHorizontal:20
   },
 });

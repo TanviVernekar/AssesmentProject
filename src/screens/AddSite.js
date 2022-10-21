@@ -25,7 +25,6 @@ const AddSite = ({navigation}) => {
   const data = useSelector(state => state.manager.value);
   console.log('i am data', data.length);
 
-  const handleReset = () => {};
 
   const signupValidationSchema = yup.object().shape({
     url: yup.string().required(),
@@ -64,16 +63,14 @@ const AddSite = ({navigation}) => {
             dispatch(add(obj));
             console.log(values);
             try {
-              // const jsonValue = JSON.stringify(values);
-              // await AsyncStorage.setItem(values.url, jsonValue);
-
+            
               Toast.show('Saved Successfully');
               navigation.navigate('AppScreen');
             } catch (err) {
               console.log(err);
             }
           }}>
-          {({handleChange, handleBlur, handleSubmit, values}) => (
+          {({handleChange, handleBlur, handleSubmit, values,handleReset}) => (
             <>
               <View>
                 <Text style={styles.text}>URL</Text>
@@ -153,21 +150,24 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#F5F7FB',
     height: 41,
-    width: 321,
+    // width: 321,
     borderRadius: 4,
-    marginStart: 30,
+    marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
     marginBottom: 5,
+    marginEnd:10
+    
   },
   description: {
     backgroundColor: '#F5F7FB',
     height: 61,
-    width: 321,
+    // width: 321,
     borderRadius: 4,
-    marginStart: 30,
+    marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
+    marginEnd:10
   },
   buttonContainer: {
     flexDirection: 'row',

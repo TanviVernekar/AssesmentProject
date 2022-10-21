@@ -13,7 +13,7 @@ export const ButtonField = props => {
 
 export const CustomButton = ({name, onPress}) => {
   return (
-    <View>
+    <View style={{width:"50%"}}>
       <TouchableOpacity style={styles2.button2} onPress={onPress}>
         <Text style={styles2.textInput}>{name}</Text>
       </TouchableOpacity>
@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 const styles2 = StyleSheet.create({
   button2: {
     height: 55,
-    width: 196,
     backgroundColor: '#0E85FF',
     // borderRadius: 4,
     alignItems: 'center',
