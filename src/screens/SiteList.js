@@ -45,7 +45,7 @@ const value = [
     notes: 'Twitter notes',
     username: 'tanvi',
 
-    folder: 'Social Media',
+    sector: 'Social Media',
   },
   {
     id: 3,
@@ -55,7 +55,7 @@ const value = [
     sitepassword: 'Instagram',
     notes: 'Instagram notes',
     username: 'tanvi',
-    folder: 'Social Media',
+    sector: 'Social Media',
   },
 ];
 

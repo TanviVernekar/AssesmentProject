@@ -16,6 +16,7 @@ import ICON from 'react-native-vector-icons/AntDesign';
 import {useDispatch} from 'react-redux';
 import {Formik} from 'formik';
 import {edit} from '../redux/PassmanagerSlice';
+import DropdownField from '../components/DropdownField';
 
 const EditScreen = ({navigation}) => {
   const route = useRoute();
@@ -24,7 +25,14 @@ const EditScreen = ({navigation}) => {
   const source = require('../assets/images/twitterIcon.png');
   const dispatch = useDispatch();
   const siteid = route.params.data.id;
-  console.log('i am ', route);
+
+
+
+  const [selected, setSelected] = useState(' ');
+  const dropdownData = [
+    {key: 'Social Media', value: 'Social Media'},
+    {key: 'Shopping Sites', value: 'Shopping Sites'},
+  ];
 
   return (
     <SafeAreaView>
@@ -44,17 +52,20 @@ const EditScreen = ({navigation}) => {
             notes: route.params.data.notes,
             source: route.params.data.source,
           }}
+          
           onSubmit={async values => {
             const obj = {
               id: siteid,
               url: values.url,
               sitename: values.sitename,
-              sector: values.sector,
+              sector:selected,
               username: values.username,
               sitepassword: values.sitepassword,
               notes: values.notes,
               source: source,
+              
             };
+            console.log(selected);
             dispatch(edit(obj));
             navigation.navigate('AppScreen');
           }}>
@@ -77,8 +88,8 @@ const EditScreen = ({navigation}) => {
                   onBlur={handleBlur('sitename')}
                   value={values.sitename}
                 />
-                <Text style={styles.text}>Sector/Folder</Text>
-                <View style={styles.inputBox1}>
+                {/* <Text style={styles.text}>Sector/Folder</Text> */}
+                {/* <View style={styles.inputBox1}>
                   <TextInput
                     style={styles.inputText1}
                     name="sector"
@@ -88,7 +99,16 @@ const EditScreen = ({navigation}) => {
                     value={values.sector}
                   />
                   <Icon name="chevron-down" size={25} color="#0E95FF" />
-                </View>
+                </View> */}
+                  <DropdownField
+                text="sector"
+                name="sector"
+                onChangeText={handleChange('sector')}
+                onBlur={handleBlur('sector')}
+                data={dropdownData}
+                value={selected}
+                setSelected={setSelected}
+              />
                 <Text style={styles.text}>User Name</Text>
                 <TextInput
                   style={styles.input}

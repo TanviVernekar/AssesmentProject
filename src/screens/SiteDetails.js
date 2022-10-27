@@ -87,6 +87,7 @@ const SiteDetails = ({navigation}) => {
                       editable={false}
                       selectTextOnFocus={false}
                       value={route.params.item.sector}
+                      
                     />
                     <Icon name="chevron-down" size={25} color="#0E95FF" />
                   </View>

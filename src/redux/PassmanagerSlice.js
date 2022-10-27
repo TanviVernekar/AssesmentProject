@@ -62,7 +62,7 @@ export const PassmanagerSlice = createSlice({
           sitedata.sitename = action.payload.sitename;
           sitedata.url = action.payload.url;
           sitedata.password = action.payload.password;
-          sitedata.folder = action.payload.folder;
+          sitedata.sector = action.payload.sector;
           sitedata.username = action.payload.username;
           sitedata.notes = action.payload.notes;
         }
