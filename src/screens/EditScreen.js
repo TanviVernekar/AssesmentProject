@@ -26,8 +26,6 @@ const EditScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const siteid = route.params.data.id;
 
-
-
   const [selected, setSelected] = useState(' ');
   const dropdownData = [
     {key: 'Social Media', value: 'Social Media'},
@@ -52,18 +50,16 @@ const EditScreen = ({navigation}) => {
             notes: route.params.data.notes,
             source: route.params.data.source,
           }}
-          
           onSubmit={async values => {
             const obj = {
               id: siteid,
               url: values.url,
               sitename: values.sitename,
-              sector:selected,
+              sector: selected,
               username: values.username,
               sitepassword: values.sitepassword,
               notes: values.notes,
               source: source,
-              
             };
             console.log(selected);
             dispatch(edit(obj));
@@ -88,32 +84,19 @@ const EditScreen = ({navigation}) => {
                   onBlur={handleBlur('sitename')}
                   value={values.sitename}
                 />
-                {/* <Text style={styles.text}>Sector/Folder</Text> */}
-                {/* <View style={styles.inputBox1}>
-                  <TextInput
-                    style={styles.inputText1}
-                    name="sector"
-                    selectTextOnFocus={false}
-                    onChangeText={handleChange('sector')}
-                    onBlur={handleBlur('sector')}
-                    value={values.sector}
-                  />
-                  <Icon name="chevron-down" size={25} color="#0E95FF" />
-                </View> */}
-                  <DropdownField
-                text="sector"
-                name="sector"
-                onChangeText={handleChange('sector')}
-                onBlur={handleBlur('sector')}
-                data={dropdownData}
-                value={selected}
-                setSelected={setSelected}
-              />
+                <DropdownField
+                  text="sector"
+                  name="sector"
+                  onChangeText={handleChange('sector')}
+                  onBlur={handleBlur('sector')}
+                  data={dropdownData}
+                  value={selected}
+                  setSelected={setSelected}
+                />
                 <Text style={styles.text}>User Name</Text>
                 <TextInput
                   style={styles.input}
                   name="username"
-                 
                   onChangeText={handleChange('username')}
                   onBlur={handleBlur('username')}
                   value={values.username}
@@ -122,7 +105,6 @@ const EditScreen = ({navigation}) => {
                 <View style={styles.inputBox1}>
                   <TextInput
                     style={styles.inputText1}
-                    
                     name="sitepassword"
                     selectTextOnFocus={false}
                     onChangeText={handleChange('sitepassword')}
@@ -142,11 +124,7 @@ const EditScreen = ({navigation}) => {
                   />
                 </View>
                 <Text style={styles.text}>Notes</Text>
-                <TextInput
-                  style={styles.description}
-                  
-                  value={values.notes}
-                />
+                <TextInput style={styles.description} value={values.notes} />
               </View>
               <View style={styles.buttonview}>
                 <TouchableOpacity
@@ -183,30 +161,28 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#F5F7FB',
     height: 41,
-    width: "100%",
     borderRadius: 4,
     marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
-    marginBottom: 5 ,
+    marginBottom: 5,
     paddingStart: 5,
-    
-    
+    marginHorizontal: 10,
   },
   sitename: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
-    marginStart: 100,
+    marginHorizontal: 10,
   },
   description: {
     backgroundColor: '#F5F7FB',
     height: 61,
-    // width: 321,
     borderRadius: 4,
     marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
+    marginHorizontal: 10,
   },
   headerview: {
     backgroundColor: '#0E85FF',
@@ -222,7 +198,6 @@ const styles = StyleSheet.create({
   },
   inputBox1: {
     height: 41,
-    // width: 321,
     borderWidth: 1,
     borderColor: '#D7D7D7',
     borderRadius: 4,
@@ -231,15 +206,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
-    marginStart: 10,
+    marginHorizontal: 10,
     backgroundColor: '#F5F7FB',
-    justifyContent:"space-between"
+    justifyContent: 'space-between',
   },
   inputText1: {
     height: 41,
-    // width: 280,
     lineHeight: 24,
-    
   },
   update: {
     height: 28,
@@ -252,13 +225,12 @@ const styles = StyleSheet.create({
   },
   rectangle: {
     height: 55,
-    // width: 400,
     backgroundColor: '#0E85FF',
     justifyContent: 'center',
     alignItems: 'center',
   },
   buttonview: {
     paddingTop: 100,
-    paddingHorizontal:20
+    paddingHorizontal: 20,
   },
 });
