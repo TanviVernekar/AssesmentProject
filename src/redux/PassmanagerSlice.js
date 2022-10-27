@@ -69,8 +69,8 @@ export const PassmanagerSlice = createSlice({
       });
     },
     deleteSite :(state,action) => {
-      state.value = state.value.filter(value => value.id !== action.payload.id);
-
+      state.value = state.value.filter(value => value.id !== action.payload.id)
+      state.filterValue=state.value
     },
     filter: (state, action) => {
       state.value = state.filterValue.filter(site =>

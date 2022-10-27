@@ -8,11 +8,14 @@ import {
   StatusBar,
   FlatList,
   Pressable,
-  Alert
+  Alert,
+  TouchableOpacity 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import { deleteSite } from '../redux/PassmanagerSlice';
+
+import Clipboard from '@react-native-clipboard/clipboard';
 
 const value = [
   {
@@ -63,6 +66,11 @@ const SiteList = ({navigation}) => {
   const value = useSelector(state => state.manager.value);
   const dispatch=useDispatch();
 
+  const handleCopy=(password)=>{
+
+    Clipboard.setString(password);
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -95,10 +103,10 @@ const SiteList = ({navigation}) => {
 
                     <View>
                       <Text style={styles.socialText}>{item.sitename}</Text>
-                      <View style={styles.copyContent}>
-                        <Icon name="content-copy" size={15} color="" />
+                      <TouchableOpacity style={styles.copyContent} onPress={()=>handleCopy(item.sitepassword)}>
+                        <Icon name="content-copy" size={15} color="#0E85FF" />
                         <Text style={styles.copyText}> Copy Password</Text>
-                      </View>
+                      </TouchableOpacity>
                     </View>
                   </View>
 

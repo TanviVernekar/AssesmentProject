@@ -14,11 +14,11 @@ const DropdownField = props => {
         value={props.value}
         data={props.data}
         setSelected={props.setSelected}
-        
+
         placeholder="Select Type"
         boxStyles={{
-          height: 45,
-          width: '100%',
+          height: 43,
+          width: '98%',
           alignItems: 'center',
           paddingHorizontal: 20,
           alignSelf: 'center',
@@ -27,7 +27,7 @@ const DropdownField = props => {
           borderColor: '#D7D7D7',
           borderRadius: 5,
           fontSize: 18,
-          margin: 14,
+          margin: 10,
           marginHorizontal: 10,
         }}
         inputStyles={{color: 'black'}}
