@@ -17,50 +17,50 @@ import {deleteSite} from '../redux/PassmanagerSlice';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 
-const value = [
-  {
-    id: 1,
-    sitename: 'Facebook',
-    source: require('../assets/images/facebookIcon.png'),
-    url: 'www.facebook.com',
-    sitepassword: 'facebook',
-    notes: 'Facebook notes',
-    username: 'tanvi',
-    sector: 'Social Media',
-  },
-  {
-    id: 2,
-    sitename: 'Youtube',
-    source: require('../assets/images/youtubeIcon.png'),
-    url: 'www.youtube.com/ssmraok',
-    sitepassword: 'Youtube',
-    notes: 'Youtube notes',
-    username: 'tanvi',
+// const value = [
+//   {
+//     id: 1,
+//     sitename: 'Facebook',
+//     source: require('../assets/images/facebookIcon.png'),
+//     url: 'www.facebook.com',
+//     sitepassword: 'facebook',
+//     notes: 'Facebook notes',
+//     username: 'tanvi',
+//     sector: 'Social Media',
+//   },
+//   {
+//     id: 2,
+//     sitename: 'Youtube',
+//     source: require('../assets/images/youtubeIcon.png'),
+//     url: 'www.youtube.com/ssmraok',
+//     sitepassword: 'Youtube',
+//     notes: 'Youtube notes',
+//     username: 'tanvi',
 
-    sector: 'Social Media',
-  },
-  {
-    id: 3,
-    sitename: 'Twitter',
-    source: require('../assets/images/twitterIcon.png'),
-    url: 'www.twitter.com',
-    sitepassword: 'Twitter',
-    notes: 'Twitter notes',
-    username: 'tanvi',
+//     sector: 'Social Media',
+//   },
+//   {
+//     id: 3,
+//     sitename: 'Twitter',
+//     source: require('../assets/images/twitterIcon.png'),
+//     url: 'www.twitter.com',
+//     sitepassword: 'Twitter',
+//     notes: 'Twitter notes',
+//     username: 'tanvi',
 
-    sector: 'Social Media',
-  },
-  {
-    id: 3,
-    sitename: 'Instagram',
-    source: require('../assets/images/instagramIcon.png'),
-    url: 'www.instagram.com',
-    sitepassword: 'Instagram',
-    notes: 'Instagram notes',
-    username: 'tanvi',
-    sector: 'Social Media',
-  },
-];
+//     sector: 'Social Media',
+//   },
+//   {
+//     id: 3,
+//     sitename: 'Instagram',
+//     source: require('../assets/images/instagramIcon.png'),
+//     url: 'www.instagram.com',
+//     sitepassword: 'Instagram',
+//     notes: 'Instagram notes',
+//     username: 'tanvi',
+//     sector: 'Social Media',
+//   },
+// ];
 
 const SiteList = ({navigation}) => {
   const value = useSelector(state => state.manager.value);
