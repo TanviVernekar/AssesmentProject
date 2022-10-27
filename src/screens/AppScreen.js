@@ -12,12 +12,47 @@ import {
 } from 'react-native';
 import SiteList from '../screens/SiteList';
 import SearchField from '../components/SearchField';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {filter} from '../redux/PassmanagerSlice';
+import {filterDropDown} from '../redux/PassmanagerSlice';
+import {DataSyncField} from '../components/DataSyncField';
 
 const AppScreen = ({navigation}) => {
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
+
+  //dropdown
+  const [visible, setVisible] = useState(false);
+  const [item, setItem] = useState('All');
+  const data = useSelector(state => state.manager.value);
+  const sitesFolder = ['All', 'Social Media', 'Shopping Sites'];
+
+  const setDropdown = () => {
+    setVisible(!visible);
+  };
+
+  const handleFolders = sector => {
+    setItem(sector);
+    dispatch(filterDropDown(sector));
+    setVisible(false);
+  };
+  const renderDropdown = () => {
+    if (visible) {
+      return (
+        <View style={styles.dropdownContainer}>
+          {sitesFolder.map(sector => (
+            <TouchableOpacity
+              onPress={() => {
+                handleFolders(sector);
+              }}
+              key={sector}>
+              <Text style={styles.dropdownText}>{sector}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      );
+    }
+  };
 
   const handlePress = () => {
     return navigation.navigate('Add Site');
@@ -46,10 +81,7 @@ const AppScreen = ({navigation}) => {
               />
             </TouchableOpacity>
           </View>
-          <Image
-            source={require('../assets/images/sync_icn.png')}
-            style={styles.contentIcon}
-          />
+          <DataSyncField />
           <Image
             source={require('../assets/images/profile.png')}
             style={styles.contentIcon}
@@ -62,26 +94,34 @@ const AppScreen = ({navigation}) => {
           <SearchField onChangeText={text => dispatch(filter(text))} />
         ) : (
           <>
-          <View style={{justifyContent:"space-between",alignItems:"center",flexDirection:"row",width:"100%"}}>
-            <View>
-              <Text style={styles.mainContent}>Sites</Text>
-              <View style={styles.borderBottom} />
-            </View>
-            <View style={[styles.dropDownContent]}>
-              <Text style={styles.dropDowntext}>Social Media</Text>
-              <View style={styles.oval}>
-                <Text style={[styles.item]}>07</Text>
+            <View
+              style={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexDirection: 'row',
+                width: '100%',
+              }}>
+              <View>
+                <Text style={styles.mainContent}>Sites</Text>
+                <View style={styles.borderBottom} />
               </View>
-              <Image
-                source={require('../assets/images/pathcopy.png')}
-                style={styles.arrow}
-              />
-            </View>
+              <View style={[styles.dropDownContent]}>
+                <Text style={styles.dropDowntext}>{item}</Text>
+                <Pressable style={styles.oval} disabled={true}>
+                  <Text style={[styles.item]}>0{data.length}</Text>
+                </Pressable>
+                <TouchableOpacity onPress={setDropdown}>
+                  <Image
+                    source={require('../assets/images/pathcopy.png')}
+                    style={styles.arrow}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
           </>
         )}
       </View>
-
+      <View>{renderDropdown()}</View>
       <SiteList navigation={navigation} />
       <TouchableOpacity title="add" style={styles.button} onPress={handlePress}>
         <Image
@@ -96,12 +136,10 @@ const AppScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  
   },
   mainContainer: {
     flex: 1,
     backgroundColor: '#FAFAFA',
-    
   },
   header: {
     width: '100%',
@@ -139,8 +177,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#FAFAFA',
     marginTop: 10,
-    
-    
   },
   borderBottom: {
     borderBottomWidth: 4,
@@ -168,8 +204,8 @@ const styles = StyleSheet.create({
   dropDowntext: {
     color: '#3C4857',
     fontSize: 19.2,
-    margin: 10,
-    // marginLeft: '36%',
+    margin: 8,
+    marginLeft: '10%',
   },
   item: {
     color: 'white',
@@ -209,6 +245,18 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 48,
     height: 48,
+  },
+  dropdownContainer: {
+    marginVertical: 20,
+    alignSelf: 'flex-end',
+    marginEnd: 15,
+    borderRadius: 5,
+    borderWidth: 0.2,
+    borderColor: '#0E85FF',
+    backgroundColor: '#FFFFFF',
+  },
+  dropdownText: {
+    padding: 5,
   },
 });
 

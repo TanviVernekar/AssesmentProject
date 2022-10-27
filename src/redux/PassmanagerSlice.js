@@ -70,15 +70,26 @@ export const PassmanagerSlice = createSlice({
     },
     deleteSite :(state,action) => {
       state.value = state.value.filter(value => value.id !== action.payload.id);
+
     },
     filter: (state, action) => {
       state.value = state.filterValue.filter(site =>
         site.sitename.toLowerCase().includes(action.payload.toLowerCase()),
       );
     },
+    filterDropDown: (state, action) => {
+      if(action.payload == 'All'){
+        state.value= state.filterValue
+      }else{
+        state.value = state.filterValue.filter(site =>
+          site.sector.toLowerCase().includes(action.payload.toLowerCase()),
+        );
+      }
+
+    }
   },
 });
 
-export const {add, filter,deleteSite, edit} = PassmanagerSlice.actions;
+export const {add, filter,deleteSite, edit,filterDropDown} = PassmanagerSlice.actions;
 
 export default PassmanagerSlice.reducer;

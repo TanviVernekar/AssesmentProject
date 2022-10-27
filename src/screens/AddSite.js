@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {add} from '../redux/PassmanagerSlice';
 import Toast from 'react-native-simple-toast';
 import * as yup from 'yup';
+import DropdownField from '../components/DropdownField';
 
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -23,13 +24,17 @@ const AddSite = ({navigation}) => {
   const [values, setInputValue] = useState('');
   const dispatch = useDispatch();
   const data = useSelector(state => state.manager.value);
-  console.log('i am data', data.length);
 
+
+  const [selected, setSelected] = useState(' ');
+  const dropdownData = [
+    {key: 'Social Media', value: 'Social Media'},
+    {key: 'Shopping Sites', value: 'Shopping Sites'},
+  ];
 
   const signupValidationSchema = yup.object().shape({
     url: yup.string().required(),
     sitename: yup.string().required(),
-    sector: yup.string().required(),
     username: yup.string().required(),
     sitepassword: yup.string().required(),
     notes: yup.string().required(),
@@ -53,7 +58,7 @@ const AddSite = ({navigation}) => {
               id: data.length + 1,
               url: values.url,
               sitename: values.sitename,
-              sector: values.sector,
+              sector: selected,
               username: values.username,
               sitepassword: values.sitepassword,
               notes: values.notes,
@@ -63,14 +68,13 @@ const AddSite = ({navigation}) => {
             dispatch(add(obj));
             console.log(values);
             try {
-            
               Toast.show('Saved Successfully');
               navigation.navigate('AppScreen');
             } catch (err) {
               console.log(err);
             }
           }}>
-          {({handleChange, handleBlur, handleSubmit, values,handleReset}) => (
+          {({handleChange, handleBlur, handleSubmit, values, handleReset}) => (
             <>
               <View>
                 <Text style={styles.text}>URL</Text>
@@ -89,14 +93,14 @@ const AddSite = ({navigation}) => {
                   onBlur={handleBlur('sitename')}
                   value={values.sitename}
                 />
-                <Text style={styles.text}>Sector/Folder</Text>
-                <TextInput
-                  style={styles.input}
-                  source={require('../assets/images/pathcopy.png')}
+                <DropdownField
+                  text="sector"
                   name="sector"
                   onChangeText={handleChange('sector')}
                   onBlur={handleBlur('sector')}
-                  value={values.sector}
+                  data={dropdownData}
+                  value={selected}
+                  setSelected={setSelected}
                 />
                 <Text style={styles.text}>User Name</Text>
                 <TextInput
@@ -115,7 +119,6 @@ const AddSite = ({navigation}) => {
                   onBlur={handleBlur('sitepassword')}
                   value={values.sitepassword}
                   secureTextEntry
-                  // keyboardType="numeric"
                 />
                 <Text style={styles.text}>Notes</Text>
                 <TextInput
@@ -150,24 +153,21 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#F5F7FB',
     height: 41,
-    // width: 321,
     borderRadius: 4,
     marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
     marginBottom: 5,
-    marginEnd:10
-    
+    marginEnd: 10,
   },
   description: {
     backgroundColor: '#F5F7FB',
     height: 61,
-    // width: 321,
     borderRadius: 4,
     marginStart: 10,
     borderColor: '#D7D7D7',
     borderWidth: 1,
-    marginEnd:10
+    marginEnd: 10,
   },
   buttonContainer: {
     flexDirection: 'row',
