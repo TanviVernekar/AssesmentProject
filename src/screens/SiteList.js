@@ -9,11 +9,11 @@ import {
   FlatList,
   Pressable,
   Alert,
-  TouchableOpacity 
+  TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
-import { deleteSite } from '../redux/PassmanagerSlice';
+import {deleteSite} from '../redux/PassmanagerSlice';
 
 import Clipboard from '@react-native-clipboard/clipboard';
 
@@ -64,12 +64,11 @@ const value = [
 
 const SiteList = ({navigation}) => {
   const value = useSelector(state => state.manager.value);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-  const handleCopy=(password)=>{
-
+  const handleCopy = password => {
     Clipboard.setString(password);
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -78,7 +77,7 @@ const SiteList = ({navigation}) => {
         renderItem={({item}) => (
           <View>
             <Pressable
-               onLongPress={() => {
+              onLongPress={() => {
                 Alert.alert('Confirm', 'Do you want to delete Site', [
                   {
                     text: 'ok',
@@ -90,8 +89,7 @@ const SiteList = ({navigation}) => {
                     text: 'cancel',
                   },
                 ]);
-              }
-            }
+              }}
               onPress={() => {
                 console.log('Check Here!!!', item);
                 navigation.navigate('Site Details', {item});
@@ -103,7 +101,9 @@ const SiteList = ({navigation}) => {
 
                     <View>
                       <Text style={styles.socialText}>{item.sitename}</Text>
-                      <TouchableOpacity style={styles.copyContent} onPress={()=>handleCopy(item.sitepassword)}>
+                      <TouchableOpacity
+                        style={styles.copyContent}
+                        onPress={() => handleCopy(item.sitepassword)}>
                         <Icon name="content-copy" size={15} color="#0E85FF" />
                         <Text style={styles.copyText}> Copy Password</Text>
                       </TouchableOpacity>
@@ -128,8 +128,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 2,
-  
-  
   },
   item: {
     padding: 10,
@@ -141,7 +139,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 115,
     // width: 365,
-    justifyContent:"space-between",
+    justifyContent: 'space-between',
     marginStart: 12,
     shadowColor: 'grey',
     shadowOffset: {
@@ -161,7 +159,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    
   },
   bottomItem: {
     alignItems: 'center',
